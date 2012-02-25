@@ -50,6 +50,31 @@ function success(position) {
     infowindow.open(marker.get('map'), marker);
   });
 
+  <% if (@reports) %>
+  <% i = 0 %>
+    <% @reports.each do |report| %>
+    <% i += 1 %>
+
+  var latlng<%= i %> = new google.maps.LatLng(<%= report.lat %>, <%= report.lon %>);
+
+  var marker<%= i %> = new google.maps.Marker({
+      position: latlng<%= i %>, 
+      map: map, 
+      title: "<%= escape_javascript(report.comment) %>",
+      icon: "<%= report.good ? '/icons/green_MarkerG.png' : '/icons/red_MarkerB.png' %>"
+  });
+
+  var infowindow<%= i %> = new google.maps.InfoWindow({
+    content: marker<%= i %>.title,
+    maxWidth: 200
+  });
+
+  google.maps.event.addListener(marker<%= i %>, 'click', function() {
+    infowindow.open(marker<%= i %>.get('map'), marker<%= i %>);
+  });
+    <% end %>
+  <% end %>
+
 
 }
 
