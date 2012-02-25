@@ -20,8 +20,8 @@ function success(position) {
   
   var mapcanvas = document.createElement('div');
   mapcanvas.id = 'mapcanvas';
-  mapcanvas.style.height = '300px';
-  mapcanvas.style.width = '300px';
+  mapcanvas.style.height = '400px';
+  mapcanvas.style.width = '310px';
     
   document.querySelector('article').appendChild(mapcanvas);
   
@@ -43,8 +43,17 @@ function success(position) {
       position: latlng, 
       map: map, 
       title:"You are here! (at least within a "+position.coords.accuracy+" meter radius)",
-      icon: '/icons/green_markerG.png'
+ /*     icon: '/icons/green_markerG.png' */
   });
+
+  var infowindow = new google.maps.InfoWindow({
+    content: marker.title
+  });
+  google.maps.event.addListener(marker, 'click', function() {
+    infowindow.open(marker.get('map'), marker);
+  });
+
+
 }
 
 function error(msg) {
