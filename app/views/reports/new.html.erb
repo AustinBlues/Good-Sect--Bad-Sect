@@ -17,8 +17,8 @@ function success(position) {
   
   var mapcanvas = document.createElement('div');
   mapcanvas.id = 'mapcanvas';
-  mapcanvas.style.height = '400px';
-  mapcanvas.style.width = '560px';
+  mapcanvas.style.height = '300px';
+  mapcanvas.style.width = '300px';
     
   document.querySelector('article').appendChild(mapcanvas);
   
@@ -59,9 +59,6 @@ if (navigator.geolocation) {
 
 </script>
 </section>
-
-
-<h1>New report</h1>
 
 <%= render 'form' %>
 

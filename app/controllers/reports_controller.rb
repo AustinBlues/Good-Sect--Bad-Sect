@@ -41,6 +41,7 @@ class ReportsController < ApplicationController
   # POST /reports.xml
   def create
     @report = Report.new(params[:report])
+    @report.good = (params[:commit] == "Good")
 
     respond_to do |format|
       if @report.save

@@ -11,23 +11,16 @@
     </div>
   <% end %>
 
+    <%= f.hidden_field :lat %>
+    <%= f.hidden_field :lon %>
   <div class="field">
-    <%= f.label :lat %><br />
-    <%= f.text_field :lat %>
-  </div>
-  <div class="field">
-    <%= f.label :lon %><br />
-    <%= f.text_field :lon %>
-  </div>
-  <div class="field">
-    <%= f.label :comment %><br />
+    <%= f.label :comment, "Comment (optional)" %><br />
     <%= f.text_field :comment %>
-  </div>
-  <div class="field">
-    <%= f.label :datetime %><br />
-    <%= f.datetime_select :datetime %>
-  </div>
+    <%= f.hidden_field :good %>
+</div>
+This Intersection Is:
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Good" %>
+    <%= f.submit "Bad" %>
   </div>
 <% end %>

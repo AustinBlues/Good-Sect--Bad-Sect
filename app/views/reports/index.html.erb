@@ -5,6 +5,7 @@
     <th>Lat</th>
     <th>Lon</th>
     <th>Comment</th>
+    <th>Good/Bad</th>
     <th>Datetime</th>
     <th></th>
     <th></th>
@@ -16,6 +17,7 @@
     <td><%= report.lat %></td>
     <td><%= report.lon %></td>
     <td><%= report.comment %></td>
+    <td><%= report.good ? "Good" : "Bad" %></td>
     <td><%= report.datetime %></td>
     <td><%= link_to 'Show', report %></td>
     <td><%= link_to 'Edit', edit_report_path(report) %></td>
