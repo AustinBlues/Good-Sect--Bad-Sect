@@ -70,7 +70,7 @@ function success(position) {
   });
 
   google.maps.event.addListener(marker<%= i %>, 'click', function() {
-    infowindow.open(marker<%= i %>.get('map'), marker<%= i %>);
+    infowindow<%= i %>.open(marker<%= i %>.get('map'), marker<%= i %>);
   });
     <% end %>
   <% end %>
