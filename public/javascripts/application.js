@@ -14,6 +14,6 @@ function show_raw_data() {
 }
 
 $(document).ready(function($) {
-	$('a#show_raw_data_btn').click(toggle);
+	$('#show_raw_data_btn').click(show_raw_data);
 });
 
