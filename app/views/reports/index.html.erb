@@ -47,7 +47,8 @@ function success(position) {
   });
 
   var infowindow = new google.maps.InfoWindow({
-    content: marker.title
+    content: marker.title,
+    maxWidth: 200
   });
   google.maps.event.addListener(marker, 'click', function() {
     infowindow.open(marker.get('map'), marker);
