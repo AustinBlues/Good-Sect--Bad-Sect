@@ -21,6 +21,7 @@
   </tr>
 
 <% @reports.each do |report| %>
+    <% next if !(report.lat) || !(report.lon) %>
   <tr>
     <td><%= report.lat %></td>
     <td><%= report.lon %></td>
