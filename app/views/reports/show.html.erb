@@ -17,7 +17,7 @@
 
 <p>
   <b>Datetime:</b>
-  <%= @report.datetime %>
+  <%= @report.datetime || @report.updated_at || @report.created_at %>
 </p>
 
 
