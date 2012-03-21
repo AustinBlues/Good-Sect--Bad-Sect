@@ -52,7 +52,7 @@ function success(position) {
 
   <% if (@reports) %>
     <% @reports.each_with_index do |report, i| %>
-      <% next if !(report.lat) || !(report.lon) || report.lon == "" || report.lat == "" %>
+      <% next if report.lat.blank? || report.lon.blank? %>
 
   var latlng<%= i %> = new google.maps.LatLng(<%= report.lat %>, <%= report.lon %>);
 
