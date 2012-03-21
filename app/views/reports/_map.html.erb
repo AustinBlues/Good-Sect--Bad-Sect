@@ -56,18 +56,16 @@ function success(position) {
 
   var latlng<%= i %> = new google.maps.LatLng(<%= report.lat %>, <%= report.lon %>);
 
-  <% datetime = (report.datetime || report.updated_at || report.created_at).localtime.strftime('%b %d, %Y') %>
-
   var marker<%= i %> = new google.maps.Marker({
       position: latlng<%= i %>, 
       map: map, 
       title: "<%= escape_javascript(report.comment) %>",
-      datetime: "<%= escape_javascript(datetime) %>",
+      date: "<%= escape_javascript(report.date) %>",
       icon: "<%= report.good ? '/icons/green_MarkerG.png' : '/icons/red_MarkerB.png' %>"
   });
 
   var infowindow<%= i %> = new google.maps.InfoWindow({
-    content: marker<%= i %>.title + '<br/>' + marker<%= i %>.datetime,
+    content: marker<%= i %>.title + '<br/>' + marker<%= i %>.date,
     maxWidth: 200
   });
 
