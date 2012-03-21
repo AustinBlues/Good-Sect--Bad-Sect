@@ -26,7 +26,7 @@
     <td><%= report.lon %></td>
     <td><%= report.comment %></td>
     <td><%= report.good ? "Good" : "Bad" %></td>
-    <td><%= report.datetime %></td>
+    <td><%= report.datetime || report.updated_at || report.created_at %></td>
     <td><%= link_to 'Show', report %></td>
     <td><%= link_to 'Edit', edit_report_path(report) %></td>
     <td><%= link_to 'Destroy', report, :confirm => 'Are you sure?', :method => :delete %></td>
