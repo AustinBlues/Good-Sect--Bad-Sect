@@ -16,17 +16,7 @@
 class User < ActiveRecord::Base
   attr_accessor   :password
   attr_accessible :name, :email, :password, :password_confirmation
-  
-  has_many :microposts,    :dependent => :destroy
-  has_many :relationships, :dependent => :destroy,
-                           :foreign_key => "follower_id"
-  has_many :reverse_relationships, :dependent => :destroy,
-                                   :foreign_key => "followed_id",
-                                   :class_name => "Relationship"
-  has_many :following, :through => :relationships, :source => :followed
-  has_many :followers, :through => :reverse_relationships,
-                       :source  => :follower
-  
+    
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   
   validates :name,  :presence => true,
@@ -42,22 +32,6 @@ class User < ActiveRecord::Base
   
   def has_password?(submitted_password)
     encrypted_password == encrypt(submitted_password)
-  end
-  
-  def feed
-    Micropost.from_users_followed_by(self)
-  end
-  
-  def following?(followed)
-    relationships.find_by_followed_id(followed)
-  end
-  
-  def follow!(followed)
-    relationships.create!(:followed_id => followed.id)
-  end
-  
-  def unfollow!(followed)
-    relationships.find_by_followed_id(followed).destroy
   end
 
   class << self

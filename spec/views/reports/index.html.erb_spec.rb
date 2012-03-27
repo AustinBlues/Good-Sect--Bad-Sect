@@ -2,16 +2,19 @@ require 'spec_helper'
 
 describe "reports/index.html.erb" do
   before(:each) do
+    # TODO replace with Factory calls
     assign(:reports, [
       stub_model(Report,
         :lat => "Lat",
         :lon => "Lon",
-        :comment => "Comment"
+        :comment => "Comment",
+        :datetime => Time.now
       ),
       stub_model(Report,
         :lat => "Lat",
         :lon => "Lon",
-        :comment => "Comment"
+        :comment => "Comment",
+        :datetime => Time.now
       )
     ])
   end

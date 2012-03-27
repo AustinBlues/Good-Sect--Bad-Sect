@@ -4,7 +4,7 @@ describe PagesController do
   render_views
 
   before(:each) do
-    @base_title = "Ruby on Rails Tutorial Sample App"
+    @base_title = 'Good Sect Bad Sect'
   end
 
   describe "GET 'home'" do
@@ -30,20 +30,12 @@ describe PagesController do
     describe "when signed in" do
       before(:each) do
         @user = test_sign_in(Factory(:user))
-        other_user = Factory(:user, :email => Factory.next(:email))
-        other_user.follow!(@user)
       end
-      
-      it "should have the right follower/following counts" do
-        get :home
-        response.should have_selector('a', :href => following_user_path(@user),
-                                           :content => "0 following")
-        response.should have_selector('a', :href => followers_user_path(@user),
-                                           :content => "1 follower")
-      end
-    end
 
+      pending "add some examples to #{__FILE__} for 'when signed in'"
+    end
   end
+
 
   describe "GET 'contact'" do
     it "should be successful" do
