@@ -11,7 +11,7 @@ describe SessionsController do
     
     it "should have the right title" do
       get :new
-      response.should have_selector('title', :content => "Sign in")
+      response.should have_selector('title', :content => "Log in")
     end
   end
   
@@ -30,7 +30,7 @@ describe SessionsController do
       
       it "should have the right title" do
         post :create, :session => @attr
-        response.should have_selector('title', :content => "Sign in")
+        response.should have_selector('title', :content => "Log in")
       end
       
       it "should have an error message" do
@@ -46,10 +46,10 @@ describe SessionsController do
         @attr = { :email => @user.email, :password => @user.password }
       end
 
-      it "should sign the user in" do
+      it "should log the user in" do
         post :create, :session => @attr
         controller.current_user.should == @user
-        controller.should be_signed_in
+        controller.should be_logged_in
       end
 
       it "should redirect to the user show page" do
@@ -60,10 +60,10 @@ describe SessionsController do
   end
   
   describe "DELETE 'destroy'" do
-    it "should sign a user out" do
-      test_sign_in(Factory(:user))
+    it "should log a user out" do
+      test_log_in(Factory(:user))
       delete :destroy
-      controller.should_not be_signed_in
+      controller.should_not be_logged_in
       response.should redirect_to(root_path)
     end
   end

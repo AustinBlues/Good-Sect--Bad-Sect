@@ -9,7 +9,7 @@ describe PagesController do
 
   describe "GET 'home'" do
     
-    describe "when not signed in" do
+    describe "when not logged in" do
       it "should be successful" do
         get 'home'
         response.should be_success
@@ -27,12 +27,12 @@ describe PagesController do
       end
     end
     
-    describe "when signed in" do
+    describe "when logged in" do
       before(:each) do
-        @user = test_sign_in(Factory(:user))
+        @user = test_log_in(Factory(:user))
       end
 
-      pending "add some examples to #{__FILE__} for 'when signed in'"
+      pending "add some examples to #{__FILE__} for 'when logged in'"
     end
   end
 

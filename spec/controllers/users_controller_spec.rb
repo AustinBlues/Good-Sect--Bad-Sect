@@ -5,17 +5,17 @@ describe UsersController do
 
   describe "GET 'index'" do
 
-    describe "for non-signed-in users" do
+    describe "for non-logged-in users" do
       it "should deny access" do
         get :index
-        response.should redirect_to(signin_path)
+        response.should redirect_to(login_path)
       end
     end
     
-    describe "for signed-in-users" do
+    describe "for logged-in-users" do
 
       before(:each) do
-        @user = test_sign_in(Factory(:user))
+        @user = test_log_in(Factory(:user))
         second = Factory(:user, :name => "Bob", :email => "another@example.com")
         third  = Factory(:user, :name => "Ben", :email => "another@example.net")
         
@@ -107,9 +107,9 @@ describe UsersController do
     end
     
     
-    describe "when signed in as another user" do
+    describe "when logged in as another user" do
       it "should be successful" do
-        test_sign_in(Factory(:user, :email => Factory.next(:email)))
+        test_log_in(Factory(:user, :email => Factory.next(:email)))
         get :show, :id => @user
         response.should be_success
       end
@@ -175,12 +175,12 @@ describe UsersController do
 
       it "should have a welcome message" do
         post :create, :user => @attr
-        flash[:success].should =~ /welcome to the sample app/i
+        flash[:success].should =~ /welcome to good sect - bad sect/i
       end
       
-      it "should sign the user in" do
+      it "should log the user in" do
         post :create, :user => @attr
-        controller.should be_signed_in
+        controller.should be_logged_in
       end
     end
   end
@@ -189,7 +189,7 @@ describe UsersController do
     
     before(:each) do
       @user = Factory(:user)
-      test_sign_in(@user)
+      test_log_in(@user)
     end
     
     it "should be successful" do
@@ -213,7 +213,7 @@ describe UsersController do
       
     before(:each) do
       @user = Factory(:user)
-      test_sign_in(@user)
+      test_log_in(@user)
     end
 
     describe "failure" do
@@ -262,25 +262,25 @@ describe UsersController do
       @user = Factory(:user)
     end
 
-    describe "for non-signed-in users" do
+    describe "for non-logged-in users" do
 
       it "should deny access to 'edit'" do
         get :edit, :id => @user
-        response.should redirect_to(signin_path)
-        flash[:notice].should =~ /sign in/i
+        response.should redirect_to(login_path)
+        flash[:notice].should =~ /log in/i
       end
     
       it "should deny access to 'update'" do
         put :update, :id => @user, :user => {}
-        response.should redirect_to(signin_path)
+        response.should redirect_to(login_path)
       end
     end
 
-    describe "for signed-in users" do
+    describe "for logged-in users" do
       
       before(:each) do
         wrong_user = Factory(:user, :email => "user@example.net")
-        test_sign_in(wrong_user)
+        test_log_in(wrong_user)
       end
       
       it "should require matching users for 'edit'" do
@@ -301,16 +301,16 @@ describe UsersController do
       @user = Factory(:user)
     end
     
-    describe "as a non-signed-in user" do
+    describe "as a non-logged-in user" do
       it "should deny access" do
         delete :destroy, :id => @user
-        response.should redirect_to(signin_path)
+        response.should redirect_to(login_path)
       end
     end
     
     describe "as non-admin user" do
       it "should protect the action" do
-        test_sign_in(@user)
+        test_log_in(@user)
         delete :destroy, :id => @user
         response.should redirect_to(root_path)
       end
@@ -320,7 +320,7 @@ describe UsersController do
       
       before(:each) do
         @admin = Factory(:user, :email => "admin@example.com", :admin => true)
-        test_sign_in(@admin)
+        test_log_in(@admin)
       end
 
       it "should destroy the user" do
