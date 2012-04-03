@@ -60,7 +60,7 @@ function success(position) {
     var good = report.find(':nth-child(4)').text();
     var date = report.find(':nth-child(5)').text();
 
-    var latlng = new google.maps.LatLng(lat, lon);
+    var latlng = new google.maps.LatLng(parseFloat(lat), parseFloat(lon));
     var icon = (good == 'Good') ? '/icons/green_MarkerG.png' : '/icons/red_MarkerB.png';
     var bg_marker = new google.maps.Marker({
       position: latlng,
