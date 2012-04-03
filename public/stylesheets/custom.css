@@ -6,3 +6,18 @@
 	padding: 10px 0;
 }
 
+ul.navbar { 
+  list-style: none;
+  padding-left: 0;
+  align: left;
+}
+
+
+ul.navbar li { 
+  display: inline;
+  padding: 0 0 0 5px;
+  border-left: 1px solid black;
+}
+ul.navbar li:first-child { 
+  border-left: 0;
+}
