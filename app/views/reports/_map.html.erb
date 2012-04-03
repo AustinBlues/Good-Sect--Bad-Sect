@@ -53,7 +53,6 @@ function success(position) {
   $('#raw_data table tbody tr').each(function() {
     var report = $(this);
 
-//    console.log('HERE'+report.find(');
     var lat = report.find(':nth-child(1)').text();
     var lon = report.find(':nth-child(2)').text();
     var comment = report.find(':nth-child(3)').text();
@@ -78,9 +77,6 @@ function success(position) {
     google.maps.event.addListener(bg_marker, 'click', function(){
       info_window.open(bg_marker.get('map'), bg_marker);
     });
-	
-  console.log('ICON: '+icon);
-  console.log('DATE: '+date);
   });
 }
 
@@ -89,7 +85,7 @@ function error(msg) {
   s.innerHTML = typeof msg == 'string' ? msg : "failed";
   s.className = 'fail';
   
-  console.log(arguments);
+//  console.log(arguments);
 }
 
 if (navigator.geolocation) {
