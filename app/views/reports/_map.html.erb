@@ -51,14 +51,14 @@ function success(position) {
   });
 
   $('#raw_data table tbody tr').each(function() {
-    var report = $(this);
+    var report = $(this)[0].children;
 
-    var lat = report.find(':nth-child(1)').text();
-    var lon = report.find(':nth-child(2)').text();
-    var comment = report.find(':nth-child(3)').text();
-    var good = report.find(':nth-child(4)').text();
-    var date = report.find(':nth-child(5)').text();
-
+    var lat = report[0].textContent;
+    var lon = report[1].textContent;
+    var comment = report[2].textContent;
+    var good = report[3].textContent;
+    var date = report[4].textContent;
+	
     var latlng = new google.maps.LatLng(parseFloat(lat), parseFloat(lon));
     var icon = (good == 'Good') ? '/icons/green_MarkerG.png' : '/icons/red_MarkerB.png';
     var bg_marker = new google.maps.Marker({
