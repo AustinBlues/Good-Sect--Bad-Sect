@@ -75,7 +75,7 @@ function success(position) {
     });
 
     google.maps.event.addListener(bg_marker, 'click', function(){
-      info_window.open(bg_marker.get('map'), bg_marker);
+      info_window.open(map, bg_marker);
     });
   });
 }
