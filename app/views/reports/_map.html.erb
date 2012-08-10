@@ -56,11 +56,26 @@ function success(position) {
     var lat = report[0].textContent;
     var lon = report[1].textContent;
     var comment = report[2].textContent;
-    var good = report[3].textContent;
+    var tag = report[3].textContent;
     var date = report[4].textContent;
 	
     var latlng = new google.maps.LatLng(parseFloat(lat), parseFloat(lon));
-    var icon = (good == 'Good') ? '/icons/green_MarkerG.png' : '/icons/red_MarkerB.png';
+
+    var icon;
+    switch (tag) {
+    case 'T':
+      icon = '/icons/red_MarkerT.png'
+      break;
+    case 'B':
+      icon = '/icons/red_MarkerB.png'
+      break;
+    case 'G':
+      icon = '/icons/green_MarkerG.png'
+      break;
+    default:
+      console.log('Unknown tag: '+tag)
+    }
+
     var bg_marker = new google.maps.Marker({
       position: latlng,
       map: map,
