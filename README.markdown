@@ -7,3 +7,7 @@ stolen bikes, roadway hazards, etc.
 This fork of https://github.com/philipkd/Good-Sect--Bad-Sect builds on
 the work of the February 25, 2012 Code for America ATX Hackathon
 (http://codeatx.wikispaces.com/).
+
+So far the major changes are dates on the popups (click on a marker).
+Another project is populating the application with bike thefts during
+the last month from the Austin Police Department's Incident data.
