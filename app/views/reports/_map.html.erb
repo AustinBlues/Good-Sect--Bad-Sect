@@ -1,7 +1,17 @@
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-    <article>
-      <p>Finding your location: <span id="status">checking...</span></p>
-    </article>
+<p>Finding your location: <span id="status">checking...</span></p>
+<div style="height:380px">
+  <div id="legend" style="position: absolute; left:310px">
+    &nbsp; <img src='/icons/yellow_MarkerU.png'>&nbsp;You<br />
+    <br />
+    <strong>Austin Police:</strong> <br />
+    &nbsp; <img src='/icons/red_MarkerT.png'>&nbsp; Theft of bicycle <br />
+    <br />
+    <strong>Community:</strong> <br />
+    &nbsp; <img src='/icons/red_MarkerB.png'>&nbsp;Bad event <br />
+    &nbsp; <img src='/icons/green_MarkerG.png'>&nbsp;Good event
+  </div>
+</div>
 <script>
 function success(position) {
   var s = document.querySelector('#status');
@@ -13,13 +23,33 @@ function success(position) {
   
   s.innerHTML = "found you!";
   s.className = 'success';
+
+  legend = document.querySelector('#legend')
   
   var mapcanvas = document.createElement('div');
   mapcanvas.id = 'mapcanvas';
+  mapcanvas.style.cssFloat = 'left';
   mapcanvas.style.height = '380px';
   mapcanvas.style.width = '280px';
-    
-  document.querySelector('article').appendChild(mapcanvas);
+
+/*  legend.parentNode.style.height = mapcanvas.style.height; */
+  legend.parentNode.insertBefore(mapcanvas, legend);
+
+/*    
+  article.appendChild(mapcanvas);
+*/
+/*
+  legend = document.createElement('div');
+  legend.className = 'pull-right';
+  legend.style.cssFloat = 'right';
+  legend.innerHTML = 'Legend';
+  article.appendChild(legend);
+
+  clear_both = document.createElement('div');
+  clear_both.style.clear = 'both';
+  article.appendChild(clear_both);
+
+*/
   
   var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
